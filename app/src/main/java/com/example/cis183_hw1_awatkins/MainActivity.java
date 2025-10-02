@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity
                 ColorInfo addingColor = new ColorInfo(redBar.getProgress(), grnBar.getProgress(), bluBar.getProgress(), hexFull);
                 listOfColors.add(addingColor);
                 fillListView();
+                setBackgroundColor(255, 255, 255);
             }
         });
     }
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity
         String hexB = Integer.toHexString(b);
         if (hexB.length() < 2) {hexB = "0" + hexB;}
         String hexFull = "#" + hexR + hexG + hexB;
+        hexFull = hexFull.toUpperCase();
+        Log.d("FUCK", hexFull);
         if(r <= 128 && g <= 128 && b <= 128)
         {
             redDisplay.setTextColor(ContextCompat.getColor(this, android.R.color.white));
@@ -121,6 +124,9 @@ public class MainActivity extends AppCompatActivity
             title.setTextColor(ContextCompat.getColor(this, android.R.color.black));
             output.setTextColor(ContextCompat.getColor(this, android.R.color.black));
         }
+        redBar.setProgress(r);
+        bluBar.setProgress(b);
+        grnBar.setProgress(g);
         getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexFull));
         output.setText("RGB HEX VALUE: " + hexFull);
     }
